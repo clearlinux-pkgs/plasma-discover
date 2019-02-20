@@ -3,3 +3,4 @@
 pkgconfig(packagekit-qt2)
 pkgconfig(qoauth)
 pkgconfig(fwupd)
+pkgconfig(libmarkdown)
