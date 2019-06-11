@@ -5,14 +5,14 @@
 # Source0 file verified with key 0xEC94D18F7F05997E (jr@jriddell.org)
 #
 Name     : plasma-discover
-Version  : 5.15.5
-Release  : 8
-URL      : https://download.kde.org/stable/plasma/5.15.5/discover-5.15.5.tar.xz
-Source0  : https://download.kde.org/stable/plasma/5.15.5/discover-5.15.5.tar.xz
-Source99 : https://download.kde.org/stable/plasma/5.15.5/discover-5.15.5.tar.xz.sig
+Version  : 5.16.0
+Release  : 9
+URL      : https://download.kde.org/stable/plasma/5.16.0/discover-5.16.0.tar.xz
+Source0  : https://download.kde.org/stable/plasma/5.16.0/discover-5.16.0.tar.xz
+Source99 : https://download.kde.org/stable/plasma/5.16.0/discover-5.16.0.tar.xz.sig
 Summary  : No detailed summary available
 Group    : Development/Tools
-License  : GFDL-1.2 GPL-3.0 LGPL-2.1
+License  : GFDL-1.2 LGPL-2.1
 Requires: plasma-discover-bin = %{version}-%{release}
 Requires: plasma-discover-data = %{version}-%{release}
 Requires: plasma-discover-lib = %{version}-%{release}
@@ -77,14 +77,14 @@ locales components for the plasma-discover package.
 
 
 %prep
-%setup -q -n discover-5.15.5
+%setup -q -n discover-5.16.0
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1557246389
+export SOURCE_DATE_EPOCH=1560274200
 mkdir -p clr-build
 pushd clr-build
 export AR=gcc-ar
@@ -99,10 +99,9 @@ make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1557246389
+export SOURCE_DATE_EPOCH=1560274200
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/plasma-discover
-cp COPYING %{buildroot}/usr/share/package-licenses/plasma-discover/COPYING
 cp COPYING.GFDL %{buildroot}/usr/share/package-licenses/plasma-discover/COPYING.GFDL
 cp COPYING.LIB %{buildroot}/usr/share/package-licenses/plasma-discover/COPYING.LIB
 pushd clr-build
@@ -134,18 +133,17 @@ popd
 /usr/share/icons/hicolor/scalable/apps/flatpak-discover.svg
 /usr/share/icons/hicolor/scalable/apps/plasmadiscover.svgz
 /usr/share/knotifications5/discoverabstractnotifier.notifyrc
+/usr/share/knsrcfiles/discover_ktexteditor_codesnippets_core.knsrc
 /usr/share/kservices5/plasma-applet-org.kde.discovernotifier.desktop
 /usr/share/kxmlgui5/plasmadiscover/plasmadiscoverui.rc
 /usr/share/libdiscover/categories/flatpak-backend-categories.xml
 /usr/share/metainfo/org.kde.discover.appdata.xml
 /usr/share/metainfo/org.kde.discover.flatpak.appdata.xml
 /usr/share/metainfo/org.kde.discovernotifier.appdata.xml
-/usr/share/plasma/plasmoids/org.kde.discovernotifier/contents/ui/Full.qml
 /usr/share/plasma/plasmoids/org.kde.discovernotifier/contents/ui/main.qml
 /usr/share/plasma/plasmoids/org.kde.discovernotifier/metadata.desktop
 /usr/share/plasma/plasmoids/org.kde.discovernotifier/metadata.json
 /usr/share/xdg/discover.categories
-/usr/share/xdg/discover_ktexteditor_codesnippets_core.knsrc
 
 %files lib
 %defattr(-,root,root,-)
@@ -159,7 +157,6 @@ popd
 
 %files license
 %defattr(0644,root,root,0755)
-/usr/share/package-licenses/plasma-discover/COPYING
 /usr/share/package-licenses/plasma-discover/COPYING.GFDL
 /usr/share/package-licenses/plasma-discover/COPYING.LIB
 
