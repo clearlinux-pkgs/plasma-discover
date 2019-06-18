@@ -5,14 +5,14 @@
 # Source0 file verified with key 0xEC94D18F7F05997E (jr@jriddell.org)
 #
 Name     : plasma-discover
-Version  : 5.16.0
-Release  : 9
-URL      : https://download.kde.org/stable/plasma/5.16.0/discover-5.16.0.tar.xz
-Source0  : https://download.kde.org/stable/plasma/5.16.0/discover-5.16.0.tar.xz
-Source99 : https://download.kde.org/stable/plasma/5.16.0/discover-5.16.0.tar.xz.sig
+Version  : 5.16.1
+Release  : 10
+URL      : https://download.kde.org/stable/plasma/5.16.1/discover-5.16.1.tar.xz
+Source0  : https://download.kde.org/stable/plasma/5.16.1/discover-5.16.1.tar.xz
+Source99 : https://download.kde.org/stable/plasma/5.16.1/discover-5.16.1.tar.xz.sig
 Summary  : No detailed summary available
 Group    : Development/Tools
-License  : GFDL-1.2 LGPL-2.1
+License  : GFDL-1.2 GPL-3.0 LGPL-2.1
 Requires: plasma-discover-bin = %{version}-%{release}
 Requires: plasma-discover-data = %{version}-%{release}
 Requires: plasma-discover-lib = %{version}-%{release}
@@ -77,16 +77,17 @@ locales components for the plasma-discover package.
 
 
 %prep
-%setup -q -n discover-5.16.0
+%setup -q -n discover-5.16.1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1560274200
+export SOURCE_DATE_EPOCH=1560875319
 mkdir -p clr-build
 pushd clr-build
+export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
@@ -99,9 +100,10 @@ make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1560274200
+export SOURCE_DATE_EPOCH=1560875319
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/plasma-discover
+cp COPYING %{buildroot}/usr/share/package-licenses/plasma-discover/COPYING
 cp COPYING.GFDL %{buildroot}/usr/share/package-licenses/plasma-discover/COPYING.GFDL
 cp COPYING.LIB %{buildroot}/usr/share/package-licenses/plasma-discover/COPYING.LIB
 pushd clr-build
@@ -157,6 +159,7 @@ popd
 
 %files license
 %defattr(0644,root,root,0755)
+/usr/share/package-licenses/plasma-discover/COPYING
 /usr/share/package-licenses/plasma-discover/COPYING.GFDL
 /usr/share/package-licenses/plasma-discover/COPYING.LIB
 
