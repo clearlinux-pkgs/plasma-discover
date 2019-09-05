@@ -5,11 +5,11 @@
 # Source0 file verified with key 0xEC94D18F7F05997E (jr@jriddell.org)
 #
 Name     : plasma-discover
-Version  : 5.16.4
-Release  : 13
-URL      : https://download.kde.org/stable/plasma/5.16.4/discover-5.16.4.tar.xz
-Source0  : https://download.kde.org/stable/plasma/5.16.4/discover-5.16.4.tar.xz
-Source1 : https://download.kde.org/stable/plasma/5.16.4/discover-5.16.4.tar.xz.sig
+Version  : 5.16.5
+Release  : 14
+URL      : https://download.kde.org/stable/plasma/5.16.5/discover-5.16.5.tar.xz
+Source0  : https://download.kde.org/stable/plasma/5.16.5/discover-5.16.5.tar.xz
+Source1 : https://download.kde.org/stable/plasma/5.16.5/discover-5.16.5.tar.xz.sig
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : GFDL-1.2 GPL-3.0 LGPL-2.1
@@ -77,16 +77,17 @@ locales components for the plasma-discover package.
 
 
 %prep
-%setup -q -n discover-5.16.4
+%setup -q -n discover-5.16.5
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1564513943
+export SOURCE_DATE_EPOCH=1567650282
 mkdir -p clr-build
 pushd clr-build
+# -Werror is for werrorists
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -100,7 +101,7 @@ make  %{?_smp_mflags} VERBOSE=1
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1564513943
+export SOURCE_DATE_EPOCH=1567650282
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/plasma-discover
 cp COPYING %{buildroot}/usr/share/package-licenses/plasma-discover/COPYING
