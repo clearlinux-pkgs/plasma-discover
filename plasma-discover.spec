@@ -5,11 +5,11 @@
 # Source0 file verified with key 0xEC94D18F7F05997E (jr@jriddell.org)
 #
 Name     : plasma-discover
-Version  : 5.17.1
-Release  : 16
-URL      : https://download.kde.org/stable/plasma/5.17.1/discover-5.17.1.tar.xz
-Source0  : https://download.kde.org/stable/plasma/5.17.1/discover-5.17.1.tar.xz
-Source1 : https://download.kde.org/stable/plasma/5.17.1/discover-5.17.1.tar.xz.sig
+Version  : 5.17.2
+Release  : 17
+URL      : https://download.kde.org/stable/plasma/5.17.2/discover-5.17.2.tar.xz
+Source0  : https://download.kde.org/stable/plasma/5.17.2/discover-5.17.2.tar.xz
+Source1 : https://download.kde.org/stable/plasma/5.17.2/discover-5.17.2.tar.xz.sig
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : GFDL-1.2 GPL-3.0 LGPL-2.1
@@ -77,14 +77,14 @@ locales components for the plasma-discover package.
 
 
 %prep
-%setup -q -n discover-5.17.1
+%setup -q -n discover-5.17.2
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1571802997
+export SOURCE_DATE_EPOCH=1572442615
 mkdir -p clr-build
 pushd clr-build
 # -Werror is for werrorists
@@ -98,12 +98,12 @@ make  %{?_smp_mflags}  VERBOSE=1
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1571802997
+export SOURCE_DATE_EPOCH=1572442615
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/plasma-discover
-cp %{_builddir}/discover-5.17.1/COPYING %{buildroot}/usr/share/package-licenses/plasma-discover/65aec5a8ccb6ecc51d700c66d290ce66f0a5e9f7
-cp %{_builddir}/discover-5.17.1/COPYING.GFDL %{buildroot}/usr/share/package-licenses/plasma-discover/bd75d59f9d7d9731bfabdc48ecd19e704d218e38
-cp %{_builddir}/discover-5.17.1/COPYING.LIB %{buildroot}/usr/share/package-licenses/plasma-discover/01a6b4bf79aca9b556822601186afab86e8c4fbf
+cp %{_builddir}/discover-5.17.2/COPYING %{buildroot}/usr/share/package-licenses/plasma-discover/65aec5a8ccb6ecc51d700c66d290ce66f0a5e9f7
+cp %{_builddir}/discover-5.17.2/COPYING.GFDL %{buildroot}/usr/share/package-licenses/plasma-discover/bd75d59f9d7d9731bfabdc48ecd19e704d218e38
+cp %{_builddir}/discover-5.17.2/COPYING.LIB %{buildroot}/usr/share/package-licenses/plasma-discover/01a6b4bf79aca9b556822601186afab86e8c4fbf
 pushd clr-build
 %make_install
 popd
