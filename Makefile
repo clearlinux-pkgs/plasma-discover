@@ -1,5 +1,5 @@
 PKG_NAME := plasma-discover
-URL = https://download.kde.org/stable/plasma/5.18.4/discover-5.18.4.1.tar.xz
+URL = https://download.kde.org/stable/plasma/5.18.5/discover-5.18.5.tar.xz
 ARCHIVES = 
 
 include ../common/Makefile.common

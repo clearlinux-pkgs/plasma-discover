@@ -5,11 +5,11 @@
 # Source0 file verified with key 0xEC94D18F7F05997E (jr@jriddell.org)
 #
 Name     : plasma-discover
-Version  : 5.18.4.1
-Release  : 25
-URL      : https://download.kde.org/stable/plasma/5.18.4/discover-5.18.4.1.tar.xz
-Source0  : https://download.kde.org/stable/plasma/5.18.4/discover-5.18.4.1.tar.xz
-Source1  : https://download.kde.org/stable/plasma/5.18.4/discover-5.18.4.1.tar.xz.sig
+Version  : 5.18.5
+Release  : 26
+URL      : https://download.kde.org/stable/plasma/5.18.5/discover-5.18.5.tar.xz
+Source0  : https://download.kde.org/stable/plasma/5.18.5/discover-5.18.5.tar.xz
+Source1  : https://download.kde.org/stable/plasma/5.18.5/discover-5.18.5.tar.xz.sig
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : GFDL-1.2 GPL-3.0 LGPL-2.1
@@ -20,10 +20,14 @@ Requires: plasma-discover-license = %{version}-%{release}
 Requires: plasma-discover-locales = %{version}-%{release}
 BuildRequires : appstream-dev
 BuildRequires : appstream-extras
+BuildRequires : attica-dev
 BuildRequires : buildreq-cmake
 BuildRequires : buildreq-kde
+BuildRequires : extra-cmake-modules-data
 BuildRequires : flatpak-dev
+BuildRequires : ki18n-dev
 BuildRequires : kirigami2-dev
+BuildRequires : knewstuff-dev
 BuildRequires : pkg-config
 BuildRequires : pkgconfig(flatpak)
 BuildRequires : qtbase-dev mesa-dev
@@ -76,34 +80,33 @@ locales components for the plasma-discover package.
 
 
 %prep
-%setup -q -n discover-5.18.4.1
-cd %{_builddir}/discover-5.18.4.1
+%setup -q -n discover-5.18.5
+cd %{_builddir}/discover-5.18.5
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1585687593
+export SOURCE_DATE_EPOCH=1588704887
 mkdir -p clr-build
 pushd clr-build
-# -Werror is for werrorists
 export GCC_IGNORE_WERROR=1
 export CFLAGS="$CFLAGS -fno-lto "
-export FCFLAGS="$CFLAGS -fno-lto "
-export FFLAGS="$CFLAGS -fno-lto "
+export FCFLAGS="$FFLAGS -fno-lto "
+export FFLAGS="$FFLAGS -fno-lto "
 export CXXFLAGS="$CXXFLAGS -fno-lto "
 %cmake ..
 make  %{?_smp_mflags}  VERBOSE=1
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1585687593
+export SOURCE_DATE_EPOCH=1588704887
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/plasma-discover
-cp %{_builddir}/discover-5.18.4.1/COPYING %{buildroot}/usr/share/package-licenses/plasma-discover/65aec5a8ccb6ecc51d700c66d290ce66f0a5e9f7
-cp %{_builddir}/discover-5.18.4.1/COPYING.GFDL %{buildroot}/usr/share/package-licenses/plasma-discover/bd75d59f9d7d9731bfabdc48ecd19e704d218e38
-cp %{_builddir}/discover-5.18.4.1/COPYING.LIB %{buildroot}/usr/share/package-licenses/plasma-discover/01a6b4bf79aca9b556822601186afab86e8c4fbf
+cp %{_builddir}/discover-5.18.5/COPYING %{buildroot}/usr/share/package-licenses/plasma-discover/65aec5a8ccb6ecc51d700c66d290ce66f0a5e9f7
+cp %{_builddir}/discover-5.18.5/COPYING.GFDL %{buildroot}/usr/share/package-licenses/plasma-discover/bd75d59f9d7d9731bfabdc48ecd19e704d218e38
+cp %{_builddir}/discover-5.18.5/COPYING.LIB %{buildroot}/usr/share/package-licenses/plasma-discover/01a6b4bf79aca9b556822601186afab86e8c4fbf
 pushd clr-build
 %make_install
 popd
