@@ -6,7 +6,7 @@
 #
 Name     : plasma-discover
 Version  : 5.19.0
-Release  : 28
+Release  : 29
 URL      : https://download.kde.org/stable/plasma/5.19.0/discover-5.19.0.tar.xz
 Source0  : https://download.kde.org/stable/plasma/5.19.0/discover-5.19.0.tar.xz
 Source1  : https://download.kde.org/stable/plasma/5.19.0/discover-5.19.0.tar.xz.sig
@@ -31,6 +31,7 @@ BuildRequires : knewstuff-dev
 BuildRequires : pkg-config
 BuildRequires : pkgconfig(flatpak)
 BuildRequires : qtbase-dev mesa-dev
+Patch1: 0001-plasma-discover-update-Fix-rpath-link.patch
 
 %description
 No detailed description available
@@ -82,13 +83,14 @@ locales components for the plasma-discover package.
 %prep
 %setup -q -n discover-5.19.0
 cd %{_builddir}/discover-5.19.0
+%patch1 -p1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1591731447
+export SOURCE_DATE_EPOCH=1591819828
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -101,7 +103,7 @@ make  %{?_smp_mflags}  VERBOSE=1
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1591731447
+export SOURCE_DATE_EPOCH=1591819828
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/plasma-discover
 cp %{_builddir}/discover-5.19.0/COPYING %{buildroot}/usr/share/package-licenses/plasma-discover/65aec5a8ccb6ecc51d700c66d290ce66f0a5e9f7
