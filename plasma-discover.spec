@@ -6,7 +6,7 @@
 #
 Name     : plasma-discover
 Version  : 5.19.4
-Release  : 32
+Release  : 33
 URL      : https://download.kde.org/stable/plasma/5.19.4/discover-5.19.4.tar.xz
 Source0  : https://download.kde.org/stable/plasma/5.19.4/discover-5.19.4.tar.xz
 Source1  : https://download.kde.org/stable/plasma/5.19.4/discover-5.19.4.tar.xz.sig
