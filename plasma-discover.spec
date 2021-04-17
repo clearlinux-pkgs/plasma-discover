@@ -5,11 +5,11 @@
 # Source0 file verified with key 0xEC94D18F7F05997E (jr@jriddell.org)
 #
 Name     : plasma-discover
-Version  : 5.20.5
-Release  : 39
-URL      : https://download.kde.org/stable/plasma/5.20.5/discover-5.20.5.tar.xz
-Source0  : https://download.kde.org/stable/plasma/5.20.5/discover-5.20.5.tar.xz
-Source1  : https://download.kde.org/stable/plasma/5.20.5/discover-5.20.5.tar.xz.sig
+Version  : 5.21.4
+Release  : 40
+URL      : https://download.kde.org/stable/plasma/5.21.4/discover-5.21.4.tar.xz
+Source0  : https://download.kde.org/stable/plasma/5.21.4/discover-5.21.4.tar.xz
+Source1  : https://download.kde.org/stable/plasma/5.21.4/discover-5.21.4.tar.xz.sig
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : BSD-3-Clause GPL-2.0 GPL-3.0 LGPL-2.0 LGPL-2.1 LGPL-3.0 MIT
@@ -26,12 +26,13 @@ BuildRequires : buildreq-kde
 BuildRequires : extra-cmake-modules-data
 BuildRequires : flatpak-dev
 BuildRequires : ki18n-dev
+BuildRequires : kidletime-dev
 BuildRequires : kirigami2-dev
 BuildRequires : knewstuff-dev
 BuildRequires : pkg-config
 BuildRequires : pkgconfig(flatpak)
 BuildRequires : qtbase-dev mesa-dev
-Patch1: 0001-plasma-discover-update-Fix-rpath-link.patch
+Patch1: fix-build.patch
 
 %description
 No detailed description available
@@ -81,8 +82,8 @@ locales components for the plasma-discover package.
 
 
 %prep
-%setup -q -n discover-5.20.5
-cd %{_builddir}/discover-5.20.5
+%setup -q -n discover-5.21.4
+cd %{_builddir}/discover-5.21.4
 %patch1 -p1
 
 %build
@@ -90,7 +91,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1609874347
+export SOURCE_DATE_EPOCH=1618702853
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -103,27 +104,28 @@ make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1609874347
+export SOURCE_DATE_EPOCH=1618702853
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/plasma-discover
-cp %{_builddir}/discover-5.20.5/LICENSES/BSD-3-Clause.txt %{buildroot}/usr/share/package-licenses/plasma-discover/9950d3fdce1cff1f71212fb5abd31453c6ee2f8c
-cp %{_builddir}/discover-5.20.5/LICENSES/GPL-2.0-only.txt %{buildroot}/usr/share/package-licenses/plasma-discover/2a638514c87c4923c0570c55822620fad56f2a33
-cp %{_builddir}/discover-5.20.5/LICENSES/GPL-2.0-or-later.txt %{buildroot}/usr/share/package-licenses/plasma-discover/e712eadfab0d2357c0f50f599ef35ee0d87534cb
-cp %{_builddir}/discover-5.20.5/LICENSES/GPL-3.0-only.txt %{buildroot}/usr/share/package-licenses/plasma-discover/6091db0aead0d90182b93d3c0d09ba93d188f907
-cp %{_builddir}/discover-5.20.5/LICENSES/LGPL-2.0-or-later.txt %{buildroot}/usr/share/package-licenses/plasma-discover/20079e8f79713dce80ab09774505773c926afa2a
-cp %{_builddir}/discover-5.20.5/LICENSES/LGPL-2.1-only.txt %{buildroot}/usr/share/package-licenses/plasma-discover/3c3d7573e137d48253731c975ecf90d74cfa9efe
-cp %{_builddir}/discover-5.20.5/LICENSES/LGPL-3.0-only.txt %{buildroot}/usr/share/package-licenses/plasma-discover/757b86330df80f81143d5916b3e92b4bcb1b1890
-cp %{_builddir}/discover-5.20.5/LICENSES/LicenseRef-KDE-Accepted-GPL.txt %{buildroot}/usr/share/package-licenses/plasma-discover/7d9831e05094ce723947d729c2a46a09d6e90275
-cp %{_builddir}/discover-5.20.5/LICENSES/LicenseRef-KDE-Accepted-GPL.txt %{buildroot}/usr/share/package-licenses/plasma-discover/7d9831e05094ce723947d729c2a46a09d6e90275
-cp %{_builddir}/discover-5.20.5/LICENSES/LicenseRef-KDE-Accepted-LGPL.txt %{buildroot}/usr/share/package-licenses/plasma-discover/e458941548e0864907e654fa2e192844ae90fc32
-cp %{_builddir}/discover-5.20.5/LICENSES/LicenseRef-KDE-Accepted-LGPL.txt %{buildroot}/usr/share/package-licenses/plasma-discover/e458941548e0864907e654fa2e192844ae90fc32
-cp %{_builddir}/discover-5.20.5/LICENSES/MIT.txt %{buildroot}/usr/share/package-licenses/plasma-discover/a0193e3fccf86c17dc71e3f6c0ac0b535e06bea3
+cp %{_builddir}/discover-5.21.4/LICENSES/BSD-3-Clause.txt %{buildroot}/usr/share/package-licenses/plasma-discover/9950d3fdce1cff1f71212fb5abd31453c6ee2f8c
+cp %{_builddir}/discover-5.21.4/LICENSES/GPL-2.0-only.txt %{buildroot}/usr/share/package-licenses/plasma-discover/2a638514c87c4923c0570c55822620fad56f2a33
+cp %{_builddir}/discover-5.21.4/LICENSES/GPL-2.0-or-later.txt %{buildroot}/usr/share/package-licenses/plasma-discover/e712eadfab0d2357c0f50f599ef35ee0d87534cb
+cp %{_builddir}/discover-5.21.4/LICENSES/GPL-3.0-only.txt %{buildroot}/usr/share/package-licenses/plasma-discover/6091db0aead0d90182b93d3c0d09ba93d188f907
+cp %{_builddir}/discover-5.21.4/LICENSES/LGPL-2.0-or-later.txt %{buildroot}/usr/share/package-licenses/plasma-discover/20079e8f79713dce80ab09774505773c926afa2a
+cp %{_builddir}/discover-5.21.4/LICENSES/LGPL-2.1-only.txt %{buildroot}/usr/share/package-licenses/plasma-discover/3c3d7573e137d48253731c975ecf90d74cfa9efe
+cp %{_builddir}/discover-5.21.4/LICENSES/LGPL-3.0-only.txt %{buildroot}/usr/share/package-licenses/plasma-discover/757b86330df80f81143d5916b3e92b4bcb1b1890
+cp %{_builddir}/discover-5.21.4/LICENSES/LicenseRef-KDE-Accepted-GPL.txt %{buildroot}/usr/share/package-licenses/plasma-discover/7d9831e05094ce723947d729c2a46a09d6e90275
+cp %{_builddir}/discover-5.21.4/LICENSES/LicenseRef-KDE-Accepted-GPL.txt %{buildroot}/usr/share/package-licenses/plasma-discover/7d9831e05094ce723947d729c2a46a09d6e90275
+cp %{_builddir}/discover-5.21.4/LICENSES/LicenseRef-KDE-Accepted-LGPL.txt %{buildroot}/usr/share/package-licenses/plasma-discover/e458941548e0864907e654fa2e192844ae90fc32
+cp %{_builddir}/discover-5.21.4/LICENSES/LicenseRef-KDE-Accepted-LGPL.txt %{buildroot}/usr/share/package-licenses/plasma-discover/e458941548e0864907e654fa2e192844ae90fc32
+cp %{_builddir}/discover-5.21.4/LICENSES/MIT.txt %{buildroot}/usr/share/package-licenses/plasma-discover/a0193e3fccf86c17dc71e3f6c0ac0b535e06bea3
 pushd clr-build
 %make_install
 popd
 %find_lang libdiscover
 %find_lang plasma-discover-notifier
 %find_lang plasma-discover
+%find_lang kcm_updates
 
 %files
 %defattr(-,root,root,-)
@@ -139,7 +141,7 @@ popd
 /usr/share/applications/org.kde.discover-flatpak.desktop
 /usr/share/applications/org.kde.discover.desktop
 /usr/share/applications/org.kde.discover.notifier.desktop
-/usr/share/applications/org.kde.discover.snap.urlhandler.desktop
+/usr/share/applications/org.kde.discover.snap.desktop
 /usr/share/applications/org.kde.discover.urlhandler.desktop
 /usr/share/icons/hicolor/128x128/apps/plasmadiscover.png
 /usr/share/icons/hicolor/16x16/apps/plasmadiscover.png
@@ -150,6 +152,10 @@ popd
 /usr/share/icons/hicolor/scalable/apps/plasmadiscover.svgz
 /usr/share/knotifications5/discoverabstractnotifier.notifyrc
 /usr/share/knsrcfiles/discover_ktexteditor_codesnippets_core.knsrc
+/usr/share/kpackage/kcms/kcm_updates/contents/ui/main.qml
+/usr/share/kpackage/kcms/kcm_updates/metadata.desktop
+/usr/share/kpackage/kcms/kcm_updates/metadata.json
+/usr/share/kservices5/kcm_updates.desktop
 /usr/share/kxmlgui5/plasmadiscover/plasmadiscoverui.rc
 /usr/share/libdiscover/categories/flatpak-backend-categories.xml
 /usr/share/metainfo/org.kde.discover.appdata.xml
@@ -164,6 +170,7 @@ popd
 /usr/lib64/qt5/plugins/discover-notifier/FlatpakNotifier.so
 /usr/lib64/qt5/plugins/discover/flatpak-backend.so
 /usr/lib64/qt5/plugins/discover/kns-backend.so
+/usr/lib64/qt5/plugins/kcms/kcm_updates.so
 
 %files license
 %defattr(0644,root,root,0755)
@@ -178,6 +185,6 @@ popd
 /usr/share/package-licenses/plasma-discover/e458941548e0864907e654fa2e192844ae90fc32
 /usr/share/package-licenses/plasma-discover/e712eadfab0d2357c0f50f599ef35ee0d87534cb
 
-%files locales -f libdiscover.lang -f plasma-discover-notifier.lang -f plasma-discover.lang
+%files locales -f libdiscover.lang -f plasma-discover-notifier.lang -f plasma-discover.lang -f kcm_updates.lang
 %defattr(-,root,root,-)
 
