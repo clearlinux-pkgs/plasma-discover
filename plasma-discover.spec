@@ -4,7 +4,7 @@
 #
 Name     : plasma-discover
 Version  : 5.23.0
-Release  : 44
+Release  : 45
 URL      : https://download.kde.org/stable/plasma/5.23.0/discover-5.23.0.tar.xz
 Source0  : https://download.kde.org/stable/plasma/5.23.0/discover-5.23.0.tar.xz
 Summary  : No detailed summary available
