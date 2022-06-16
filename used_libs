@@ -7,7 +7,6 @@ libKF5Crash.so.5
 libKF5DBusAddons.so.5
 libKF5I18n.so.5
 libKF5IdleTime.so.5
-libKF5ItemModels.so.5
 libKF5KCMUtils.so.5
 libKF5KIOCore.so.5
 libKF5KIOGui.so.5
@@ -24,7 +23,6 @@ libQt5Network.so.5
 libQt5Qml.so.5
 libQt5Quick.so.5
 libQt5Widgets.so.5
-libQt5X11Extras.so.5
 libQt5Xml.so.5
 libc.so.6
 libflatpak.so.0
