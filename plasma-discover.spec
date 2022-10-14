@@ -5,14 +5,14 @@
 # Source0 file verified with key 0xD7574483BB57B18D (jr@jriddell.org)
 #
 Name     : plasma-discover
-Version  : 5.25.5
-Release  : 64
-URL      : https://download.kde.org/stable/plasma/5.25.5/discover-5.25.5.tar.xz
-Source0  : https://download.kde.org/stable/plasma/5.25.5/discover-5.25.5.tar.xz
-Source1  : https://download.kde.org/stable/plasma/5.25.5/discover-5.25.5.tar.xz.sig
+Version  : 5.26.0
+Release  : 65
+URL      : https://download.kde.org/stable/plasma/5.26.0/discover-5.26.0.tar.xz
+Source0  : https://download.kde.org/stable/plasma/5.26.0/discover-5.26.0.tar.xz
+Source1  : https://download.kde.org/stable/plasma/5.26.0/discover-5.26.0.tar.xz.sig
 Summary  : No detailed summary available
 Group    : Development/Tools
-License  : BSD-3-Clause GPL-2.0 GPL-3.0 LGPL-2.0 LGPL-2.1 LGPL-3.0 MIT
+License  : BSD-3-Clause CC0-1.0 GPL-2.0 GPL-3.0 LGPL-2.0 LGPL-2.1 LGPL-3.0
 Requires: plasma-discover-bin = %{version}-%{release}
 Requires: plasma-discover-data = %{version}-%{release}
 Requires: plasma-discover-lib = %{version}-%{release}
@@ -25,13 +25,13 @@ BuildRequires : buildreq-cmake
 BuildRequires : buildreq-kde
 BuildRequires : extra-cmake-modules-data
 BuildRequires : flatpak-dev
-BuildRequires : ki18n-dev
 BuildRequires : kidletime-dev
 BuildRequires : kirigami2-dev
 BuildRequires : knewstuff-dev
 BuildRequires : pkg-config
 BuildRequires : pkgconfig(flatpak)
 BuildRequires : pkgconfig(ostree-1)
+BuildRequires : purpose-dev
 
 %description
 No detailed description available
@@ -81,15 +81,15 @@ locales components for the plasma-discover package.
 
 
 %prep
-%setup -q -n discover-5.25.5
-cd %{_builddir}/discover-5.25.5
+%setup -q -n discover-5.26.0
+cd %{_builddir}/discover-5.26.0
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1662502631
+export SOURCE_DATE_EPOCH=1665723667
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -102,10 +102,11 @@ make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1662502631
+export SOURCE_DATE_EPOCH=1665723667
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/plasma-discover
 cp %{_builddir}/discover-%{version}/LICENSES/BSD-3-Clause.txt %{buildroot}/usr/share/package-licenses/plasma-discover/9950d3fdce1cff1f71212fb5abd31453c6ee2f8c || :
+cp %{_builddir}/discover-%{version}/LICENSES/CC0-1.0.txt %{buildroot}/usr/share/package-licenses/plasma-discover/82da472f6d00dc5f0a651f33ebb320aa9c7b08d0 || :
 cp %{_builddir}/discover-%{version}/LICENSES/GPL-2.0-only.txt %{buildroot}/usr/share/package-licenses/plasma-discover/2a638514c87c4923c0570c55822620fad56f2a33 || :
 cp %{_builddir}/discover-%{version}/LICENSES/GPL-2.0-or-later.txt %{buildroot}/usr/share/package-licenses/plasma-discover/e712eadfab0d2357c0f50f599ef35ee0d87534cb || :
 cp %{_builddir}/discover-%{version}/LICENSES/GPL-3.0-only.txt %{buildroot}/usr/share/package-licenses/plasma-discover/6091db0aead0d90182b93d3c0d09ba93d188f907 || :
@@ -116,7 +117,6 @@ cp %{_builddir}/discover-%{version}/LICENSES/LicenseRef-KDE-Accepted-GPL.txt %{b
 cp %{_builddir}/discover-%{version}/LICENSES/LicenseRef-KDE-Accepted-GPL.txt %{buildroot}/usr/share/package-licenses/plasma-discover/7d9831e05094ce723947d729c2a46a09d6e90275 || :
 cp %{_builddir}/discover-%{version}/LICENSES/LicenseRef-KDE-Accepted-LGPL.txt %{buildroot}/usr/share/package-licenses/plasma-discover/e458941548e0864907e654fa2e192844ae90fc32 || :
 cp %{_builddir}/discover-%{version}/LICENSES/LicenseRef-KDE-Accepted-LGPL.txt %{buildroot}/usr/share/package-licenses/plasma-discover/e458941548e0864907e654fa2e192844ae90fc32 || :
-cp %{_builddir}/discover-%{version}/LICENSES/MIT.txt %{buildroot}/usr/share/package-licenses/plasma-discover/a0193e3fccf86c17dc71e3f6c0ac0b535e06bea3 || :
 pushd clr-build
 %make_install
 popd
@@ -175,8 +175,8 @@ popd
 /usr/share/package-licenses/plasma-discover/6091db0aead0d90182b93d3c0d09ba93d188f907
 /usr/share/package-licenses/plasma-discover/757b86330df80f81143d5916b3e92b4bcb1b1890
 /usr/share/package-licenses/plasma-discover/7d9831e05094ce723947d729c2a46a09d6e90275
+/usr/share/package-licenses/plasma-discover/82da472f6d00dc5f0a651f33ebb320aa9c7b08d0
 /usr/share/package-licenses/plasma-discover/9950d3fdce1cff1f71212fb5abd31453c6ee2f8c
-/usr/share/package-licenses/plasma-discover/a0193e3fccf86c17dc71e3f6c0ac0b535e06bea3
 /usr/share/package-licenses/plasma-discover/e458941548e0864907e654fa2e192844ae90fc32
 /usr/share/package-licenses/plasma-discover/e712eadfab0d2357c0f50f599ef35ee0d87534cb
 
