@@ -5,11 +5,11 @@
 # Source0 file verified with key 0xD7574483BB57B18D (jr@jriddell.org)
 #
 Name     : plasma-discover
-Version  : 5.26.4
-Release  : 69
-URL      : https://download.kde.org/stable/plasma/5.26.4/discover-5.26.4.tar.xz
-Source0  : https://download.kde.org/stable/plasma/5.26.4/discover-5.26.4.tar.xz
-Source1  : https://download.kde.org/stable/plasma/5.26.4/discover-5.26.4.tar.xz.sig
+Version  : 5.26.5
+Release  : 70
+URL      : https://download.kde.org/stable/plasma/5.26.5/discover-5.26.5.tar.xz
+Source0  : https://download.kde.org/stable/plasma/5.26.5/discover-5.26.5.tar.xz
+Source1  : https://download.kde.org/stable/plasma/5.26.5/discover-5.26.5.tar.xz.sig
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : BSD-3-Clause CC0-1.0 GPL-2.0 GPL-3.0 LGPL-2.0 LGPL-2.1 LGPL-3.0
@@ -33,6 +33,9 @@ BuildRequires : pkg-config
 BuildRequires : pkgconfig(flatpak)
 BuildRequires : pkgconfig(ostree-1)
 BuildRequires : purpose-dev
+# Suppress stripping binaries
+%define __strip /bin/true
+%define debug_package %{nil}
 
 %description
 No detailed description available
@@ -82,28 +85,28 @@ locales components for the plasma-discover package.
 
 
 %prep
-%setup -q -n discover-5.26.4
-cd %{_builddir}/discover-5.26.4
+%setup -q -n discover-5.26.5
+cd %{_builddir}/discover-5.26.5
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1669817510
+export SOURCE_DATE_EPOCH=1673302883
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
-export CFLAGS="$CFLAGS -fno-lto "
-export FCFLAGS="$FFLAGS -fno-lto "
-export FFLAGS="$FFLAGS -fno-lto "
-export CXXFLAGS="$CXXFLAGS -fno-lto "
+export CFLAGS="$CFLAGS -fdebug-types-section -femit-struct-debug-baseonly -fno-lto -g1 -gno-column-info -gno-variable-location-views -gz "
+export FCFLAGS="$FFLAGS -fdebug-types-section -femit-struct-debug-baseonly -fno-lto -g1 -gno-column-info -gno-variable-location-views -gz "
+export FFLAGS="$FFLAGS -fdebug-types-section -femit-struct-debug-baseonly -fno-lto -g1 -gno-column-info -gno-variable-location-views -gz "
+export CXXFLAGS="$CXXFLAGS -fdebug-types-section -femit-struct-debug-baseonly -fno-lto -g1 -gno-column-info -gno-variable-location-views -gz "
 %cmake ..
 make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1669817510
+export SOURCE_DATE_EPOCH=1673302883
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/plasma-discover
 cp %{_builddir}/discover-%{version}/LICENSES/BSD-3-Clause.txt %{buildroot}/usr/share/package-licenses/plasma-discover/9950d3fdce1cff1f71212fb5abd31453c6ee2f8c || :
