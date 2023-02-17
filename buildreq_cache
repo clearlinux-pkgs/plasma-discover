@@ -1,3 +1,5 @@
-5.26.5
+5.27.0
 kidletime-dev
+kio-dev
+pkgconfig(x11)
 purpose-dev
