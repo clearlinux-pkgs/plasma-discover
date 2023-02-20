@@ -6,7 +6,7 @@
 #
 Name     : plasma-discover
 Version  : 5.27.0
-Release  : 74
+Release  : 75
 URL      : https://download.kde.org/stable/plasma/5.27.0/discover-5.27.0.tar.xz
 Source0  : https://download.kde.org/stable/plasma/5.27.0/discover-5.27.0.tar.xz
 Source1  : https://download.kde.org/stable/plasma/5.27.0/discover-5.27.0.tar.xz.sig
@@ -38,6 +38,7 @@ BuildRequires : purpose-dev
 # Suppress stripping binaries
 %define __strip /bin/true
 %define debug_package %{nil}
+Patch1: backport-link.patch
 
 %description
 No detailed description available
@@ -89,13 +90,14 @@ locales components for the plasma-discover package.
 %prep
 %setup -q -n discover-5.27.0
 cd %{_builddir}/discover-5.27.0
+%patch1 -p1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1676868443
+export SOURCE_DATE_EPOCH=1676914464
 unset LD_AS_NEEDED
 mkdir -p clr-build
 pushd clr-build
@@ -109,7 +111,7 @@ make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1676868443
+export SOURCE_DATE_EPOCH=1676914464
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/plasma-discover
 cp %{_builddir}/discover-%{version}/LICENSES/BSD-3-Clause.txt %{buildroot}/usr/share/package-licenses/plasma-discover/9950d3fdce1cff1f71212fb5abd31453c6ee2f8c || :
