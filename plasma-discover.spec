@@ -6,7 +6,7 @@
 #
 Name     : plasma-discover
 Version  : 5.27.1
-Release  : 76
+Release  : 77
 URL      : https://download.kde.org/stable/plasma/5.27.1/discover-5.27.1.tar.xz
 Source0  : https://download.kde.org/stable/plasma/5.27.1/discover-5.27.1.tar.xz
 Source1  : https://download.kde.org/stable/plasma/5.27.1/discover-5.27.1.tar.xz.sig
@@ -18,6 +18,7 @@ Requires: plasma-discover-data = %{version}-%{release}
 Requires: plasma-discover-lib = %{version}-%{release}
 Requires: plasma-discover-license = %{version}-%{release}
 Requires: plasma-discover-locales = %{version}-%{release}
+Requires: appstream-extras
 BuildRequires : appstream-dev
 BuildRequires : appstream-extras
 BuildRequires : attica-dev
@@ -95,7 +96,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1677185761
+export SOURCE_DATE_EPOCH=1677198970
 unset LD_AS_NEEDED
 mkdir -p clr-build
 pushd clr-build
@@ -109,7 +110,7 @@ make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1677185761
+export SOURCE_DATE_EPOCH=1677198970
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/plasma-discover
 cp %{_builddir}/discover-%{version}/LICENSES/BSD-3-Clause.txt %{buildroot}/usr/share/package-licenses/plasma-discover/9950d3fdce1cff1f71212fb5abd31453c6ee2f8c || :
