@@ -6,11 +6,11 @@
 # Source0 file verified with key 0xD7574483BB57B18D (jr@jriddell.org)
 #
 Name     : plasma-discover
-Version  : 5.27.4
-Release  : 81
-URL      : https://download.kde.org/stable/plasma/5.27.4/discover-5.27.4.tar.xz
-Source0  : https://download.kde.org/stable/plasma/5.27.4/discover-5.27.4.tar.xz
-Source1  : https://download.kde.org/stable/plasma/5.27.4/discover-5.27.4.tar.xz.sig
+Version  : 5.27.5
+Release  : 82
+URL      : https://download.kde.org/stable/plasma/5.27.5/discover-5.27.5.tar.xz
+Source0  : https://download.kde.org/stable/plasma/5.27.5/discover-5.27.5.tar.xz
+Source1  : https://download.kde.org/stable/plasma/5.27.5/discover-5.27.5.tar.xz.sig
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : BSD-3-Clause CC0-1.0 GPL-2.0 GPL-3.0 LGPL-2.0 LGPL-2.1 LGPL-3.0
@@ -86,8 +86,8 @@ locales components for the plasma-discover package.
 
 
 %prep
-%setup -q -n discover-5.27.4
-cd %{_builddir}/discover-5.27.4
+%setup -q -n discover-5.27.5
+cd %{_builddir}/discover-5.27.5
 %patch1 -p1
 
 %build
@@ -95,21 +95,35 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1680714401
+export SOURCE_DATE_EPOCH=1684807466
 unset LD_AS_NEEDED
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
-export CFLAGS="$CFLAGS -fdebug-types-section -femit-struct-debug-baseonly -fno-lto -g1 -gno-column-info -gno-variable-location-views -gz "
-export FCFLAGS="$FFLAGS -fdebug-types-section -femit-struct-debug-baseonly -fno-lto -g1 -gno-column-info -gno-variable-location-views -gz "
-export FFLAGS="$FFLAGS -fdebug-types-section -femit-struct-debug-baseonly -fno-lto -g1 -gno-column-info -gno-variable-location-views -gz "
-export CXXFLAGS="$CXXFLAGS -fdebug-types-section -femit-struct-debug-baseonly -fno-lto -g1 -gno-column-info -gno-variable-location-views -gz "
+export CFLAGS="$CFLAGS -fdebug-types-section -femit-struct-debug-baseonly -fno-lto -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
+export FCFLAGS="$FFLAGS -fdebug-types-section -femit-struct-debug-baseonly -fno-lto -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
+export FFLAGS="$FFLAGS -fdebug-types-section -femit-struct-debug-baseonly -fno-lto -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
+export CXXFLAGS="$CXXFLAGS -fdebug-types-section -femit-struct-debug-baseonly -fno-lto -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
+%cmake ..
+make  %{?_smp_mflags}
+popd
+mkdir -p clr-build-avx2
+pushd clr-build-avx2
+export GCC_IGNORE_WERROR=1
+export CFLAGS="$CFLAGS -O3 -Wl,-z,x86-64-v3 -fdebug-types-section -femit-struct-debug-baseonly -fno-lto -g1 -gno-column-info -gno-variable-location-views -gz=zstd -march=x86-64-v3 "
+export FCFLAGS="$FFLAGS -O3 -Wl,-z,x86-64-v3 -fdebug-types-section -femit-struct-debug-baseonly -fno-lto -g1 -gno-column-info -gno-variable-location-views -gz=zstd -march=x86-64-v3 "
+export FFLAGS="$FFLAGS -O3 -Wl,-z,x86-64-v3 -fdebug-types-section -femit-struct-debug-baseonly -fno-lto -g1 -gno-column-info -gno-variable-location-views -gz=zstd -march=x86-64-v3 "
+export CXXFLAGS="$CXXFLAGS -O3 -Wl,-z,x86-64-v3 -fdebug-types-section -femit-struct-debug-baseonly -fno-lto -g1 -gno-column-info -gno-variable-location-views -gz=zstd -march=x86-64-v3 "
+export CFLAGS="$CFLAGS -march=x86-64-v3 -m64 -Wl,-z,x86-64-v3"
+export CXXFLAGS="$CXXFLAGS -march=x86-64-v3 -m64 -Wl,-z,x86-64-v3"
+export FFLAGS="$FFLAGS -march=x86-64-v3 -m64 -Wl,-z,x86-64-v3"
+export FCFLAGS="$FCFLAGS -march=x86-64-v3 -m64 -Wl,-z,x86-64-v3"
 %cmake ..
 make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1680714401
+export SOURCE_DATE_EPOCH=1684807466
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/plasma-discover
 cp %{_builddir}/discover-%{version}/LICENSES/BSD-3-Clause.txt %{buildroot}/usr/share/package-licenses/plasma-discover/9950d3fdce1cff1f71212fb5abd31453c6ee2f8c || :
@@ -124,6 +138,9 @@ cp %{_builddir}/discover-%{version}/LICENSES/LicenseRef-KDE-Accepted-GPL.txt %{b
 cp %{_builddir}/discover-%{version}/LICENSES/LicenseRef-KDE-Accepted-GPL.txt %{buildroot}/usr/share/package-licenses/plasma-discover/7d9831e05094ce723947d729c2a46a09d6e90275 || :
 cp %{_builddir}/discover-%{version}/LICENSES/LicenseRef-KDE-Accepted-LGPL.txt %{buildroot}/usr/share/package-licenses/plasma-discover/e458941548e0864907e654fa2e192844ae90fc32 || :
 cp %{_builddir}/discover-%{version}/LICENSES/LicenseRef-KDE-Accepted-LGPL.txt %{buildroot}/usr/share/package-licenses/plasma-discover/e458941548e0864907e654fa2e192844ae90fc32 || :
+pushd clr-build-avx2
+%make_install_v3  || :
+popd
 pushd clr-build
 %make_install
 popd
@@ -131,13 +148,17 @@ popd
 %find_lang libdiscover
 %find_lang plasma-discover-notifier
 %find_lang plasma-discover
+/usr/bin/elf-move.py avx2 %{buildroot}-v3 %{buildroot} %{buildroot}/usr/share/clear/filemap/filemap-%{name}
 
 %files
 %defattr(-,root,root,-)
+/V3/usr/lib64/libexec/DiscoverNotifier
 /usr/lib64/libexec/DiscoverNotifier
 
 %files bin
 %defattr(-,root,root,-)
+/V3/usr/bin/plasma-discover
+/V3/usr/bin/plasma-discover-update
 /usr/bin/plasma-discover
 /usr/bin/plasma-discover-update
 
@@ -167,6 +188,12 @@ popd
 
 %files lib
 %defattr(-,root,root,-)
+/V3/usr/lib64/plasma-discover/libDiscoverCommon.so
+/V3/usr/lib64/plasma-discover/libDiscoverNotifiers.so
+/V3/usr/lib64/qt5/plugins/discover-notifier/FlatpakNotifier.so
+/V3/usr/lib64/qt5/plugins/discover/flatpak-backend.so
+/V3/usr/lib64/qt5/plugins/discover/kns-backend.so
+/V3/usr/lib64/qt5/plugins/plasma/kcms/systemsettings/kcm_updates.so
 /usr/lib64/plasma-discover/libDiscoverCommon.so
 /usr/lib64/plasma-discover/libDiscoverNotifiers.so
 /usr/lib64/qt5/plugins/discover-notifier/FlatpakNotifier.so
