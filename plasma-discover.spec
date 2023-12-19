@@ -8,11 +8,11 @@
 # Source0 file verified with key 0xD7574483BB57B18D (jr@jriddell.org)
 #
 Name     : plasma-discover
-Version  : 5.27.9
-Release  : 88
-URL      : https://download.kde.org/stable/plasma/5.27.9/discover-5.27.9.tar.xz
-Source0  : https://download.kde.org/stable/plasma/5.27.9/discover-5.27.9.tar.xz
-Source1  : https://download.kde.org/stable/plasma/5.27.9/discover-5.27.9.tar.xz.sig
+Version  : 5.27.10
+Release  : 89
+URL      : https://download.kde.org/stable/plasma/5.27.10/discover-5.27.10.tar.xz
+Source0  : https://download.kde.org/stable/plasma/5.27.10/discover-5.27.10.tar.xz
+Source1  : https://download.kde.org/stable/plasma/5.27.10/discover-5.27.10.tar.xz.sig
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : BSD-3-Clause CC0-1.0 GPL-2.0 GPL-3.0 LGPL-2.0 LGPL-2.1 LGPL-3.0
@@ -88,8 +88,8 @@ locales components for the plasma-discover package.
 
 
 %prep
-%setup -q -n discover-5.27.9
-cd %{_builddir}/discover-5.27.9
+%setup -q -n discover-5.27.10
+cd %{_builddir}/discover-5.27.10
 %patch -P 1 -p1
 
 %build
@@ -97,7 +97,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1702058041
+export SOURCE_DATE_EPOCH=1702976092
 unset LD_AS_NEEDED
 mkdir -p clr-build
 pushd clr-build
@@ -148,7 +148,7 @@ FFLAGS="$CLEAR_INTERMEDIATE_FFLAGS"
 FCFLAGS="$CLEAR_INTERMEDIATE_FCFLAGS"
 ASFLAGS="$CLEAR_INTERMEDIATE_ASFLAGS"
 LDFLAGS="$CLEAR_INTERMEDIATE_LDFLAGS"
-export SOURCE_DATE_EPOCH=1702058041
+export SOURCE_DATE_EPOCH=1702976092
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/plasma-discover
 cp %{_builddir}/discover-%{version}/LICENSES/BSD-3-Clause.txt %{buildroot}/usr/share/package-licenses/plasma-discover/9950d3fdce1cff1f71212fb5abd31453c6ee2f8c || :
