@@ -9,7 +9,7 @@
 #
 Name     : plasma-discover
 Version  : 5.27.10.1
-Release  : 92
+Release  : 93
 URL      : https://download.kde.org/stable/plasma/5.27.10/discover-5.27.10.1.tar.xz
 Source0  : https://download.kde.org/stable/plasma/5.27.10/discover-5.27.10.1.tar.xz
 Source1  : https://download.kde.org/stable/plasma/5.27.10/discover-5.27.10.1.tar.xz.sig
