@@ -2,3 +2,5 @@
 # picked up automatically. One name per line, no whitespace.
 appstream-dev
 flatpak-dev
+purpose-dev
+kirigami-dev
