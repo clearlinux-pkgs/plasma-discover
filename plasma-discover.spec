@@ -8,11 +8,11 @@
 # Source0 file verified with key 0xD7574483BB57B18D (jr@jriddell.org)
 #
 Name     : plasma-discover
-Version  : 6.1.2
-Release  : 105
-URL      : https://download.kde.org/stable/plasma/6.1.2/discover-6.1.2.tar.xz
-Source0  : https://download.kde.org/stable/plasma/6.1.2/discover-6.1.2.tar.xz
-Source1  : https://download.kde.org/stable/plasma/6.1.2/discover-6.1.2.tar.xz.sig
+Version  : 6.1.3
+Release  : 106
+URL      : https://download.kde.org/stable/plasma/6.1.3/discover-6.1.3.tar.xz
+Source0  : https://download.kde.org/stable/plasma/6.1.3/discover-6.1.3.tar.xz
+Source1  : https://download.kde.org/stable/plasma/6.1.3/discover-6.1.3.tar.xz.sig
 Source2  : D7574483BB57B18D.pkey
 Summary  : No detailed summary available
 Group    : Development/Tools
@@ -96,11 +96,11 @@ chmod 700 .gnupg
 gpg --homedir .gnupg --import %{SOURCE2}
 gpg --homedir .gnupg --status-fd 1 --verify %{SOURCE1} %{SOURCE0} > gpg.status
 grep -E '^\[GNUPG:\] (GOODSIG|EXPKEYSIG) D7574483BB57B18D' gpg.status
-%setup -q -n discover-6.1.2
-cd %{_builddir}/discover-6.1.2
+%setup -q -n discover-6.1.3
+cd %{_builddir}/discover-6.1.3
 %patch -P 1 -p1
 pushd ..
-cp -a discover-6.1.2 buildavx2
+cp -a discover-6.1.3 buildavx2
 popd
 
 %build
@@ -108,7 +108,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1720591327
+export SOURCE_DATE_EPOCH=1721148540
 unset LD_AS_NEEDED
 mkdir -p clr-build
 pushd clr-build
@@ -163,7 +163,7 @@ FFLAGS="$CLEAR_INTERMEDIATE_FFLAGS"
 FCFLAGS="$CLEAR_INTERMEDIATE_FCFLAGS"
 ASFLAGS="$CLEAR_INTERMEDIATE_ASFLAGS"
 LDFLAGS="$CLEAR_INTERMEDIATE_LDFLAGS"
-export SOURCE_DATE_EPOCH=1720591327
+export SOURCE_DATE_EPOCH=1721148540
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/plasma-discover
 cp %{_builddir}/discover-%{version}/LICENSES/BSD-3-Clause.txt %{buildroot}/usr/share/package-licenses/plasma-discover/9950d3fdce1cff1f71212fb5abd31453c6ee2f8c || :
