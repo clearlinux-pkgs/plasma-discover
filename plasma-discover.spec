@@ -9,7 +9,7 @@
 #
 Name     : plasma-discover
 Version  : 6.3.4
-Release  : 119
+Release  : 120
 URL      : https://download.kde.org/stable/plasma/6.3.4/discover-6.3.4.tar.xz
 Source0  : https://download.kde.org/stable/plasma/6.3.4/discover-6.3.4.tar.xz
 Source1  : https://download.kde.org/stable/plasma/6.3.4/discover-6.3.4.tar.xz.sig
